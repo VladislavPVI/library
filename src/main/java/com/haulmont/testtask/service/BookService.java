@@ -17,7 +17,7 @@ public class BookService {
         bookDao.openCurrentSession();
         Book book = bookDao.get(id);
         bookDao.closeCurrentSession();
-        return null;
+        return book;
     }
 
     public List<Book> getAll() {

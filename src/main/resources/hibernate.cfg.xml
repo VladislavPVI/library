@@ -11,7 +11,7 @@
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.connection.url">jdbc:hsqldb:file:sql/lib</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.haulmont.testtask.domain.Author"></mapping>
         <mapping class="com.haulmont.testtask.domain.Genre"></mapping>
         <mapping class="com.haulmont.testtask.domain.Book"></mapping>

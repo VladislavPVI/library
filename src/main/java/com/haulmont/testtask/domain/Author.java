@@ -1,6 +1,8 @@
 package com.haulmont.testtask.domain;
 
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,12 @@ public class Author {
     private String patronymic;
 
     public Author() {
+    }
+
+    @Override
+    public String toString(){
+        return getLastName() + " " + getFirstName() + " " + getPatronymic();
+
     }
 
     public Author(String lastName, String firstName, String patronymic) {
@@ -56,4 +64,19 @@ public class Author {
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Author author = (Author) obj;
+
+        return id.equals(author.id) && lastName.equals(author.lastName) && firstName.equals(author.firstName) && patronymic.equals(author.patronymic);
+    }
+
 }

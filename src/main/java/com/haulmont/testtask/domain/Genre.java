@@ -1,6 +1,7 @@
 package com.haulmont.testtask.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Genre {
@@ -11,6 +12,11 @@ public class Genre {
     private String name;
 
     public Genre() {
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public Genre(String name) {
@@ -33,4 +39,17 @@ public class Genre {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Genre genre = (Genre) obj;
+
+        return id.equals(genre.id) && name.equals(genre.name);
+    }
 }
