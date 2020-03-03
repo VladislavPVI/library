@@ -2,13 +2,14 @@ package com.haulmont.testtask.dao;
 
 import com.haulmont.testtask.domain.Genre;
 import com.haulmont.testtask.utils.HibernateUtil;
+
 import java.util.List;
 
 public class GenreDao extends HibernateUtil implements Dao<Genre, Long> {
 
     @Override
     public Genre get(Long id) {
-        return (Genre) getCurrentSession().get(Genre.class,id);
+        return getCurrentSession().get(Genre.class, id);
     }
 
     @SuppressWarnings("unchecked")

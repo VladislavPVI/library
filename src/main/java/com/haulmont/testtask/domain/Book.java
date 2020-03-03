@@ -87,4 +87,25 @@ public class Book {
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Book book = (Book) obj;
+
+        return id.equals(book.id) &&
+                title.equals(book.title) &&
+                author.equals(book.author) &&
+                genre.equals(book.genre) &&
+                city.equals(book.city) &&
+                year == book.year &&
+                publisher.equals(book.publisher);
+    }
+
 }

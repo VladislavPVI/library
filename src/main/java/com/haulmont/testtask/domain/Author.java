@@ -1,14 +1,11 @@
 package com.haulmont.testtask.domain;
 
-
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 
 @Entity
 @Table(
-        uniqueConstraints=
-        @UniqueConstraint(columnNames={"LASTNAME", "FIRSTNAME", "PATRONYMIC"})
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = {"LASTNAME", "FIRSTNAME", "PATRONYMIC"})
 )
 public class Author {
     @Id
@@ -22,7 +19,7 @@ public class Author {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return getLastName() + " " + getFirstName() + " " + getPatronymic();
 
     }

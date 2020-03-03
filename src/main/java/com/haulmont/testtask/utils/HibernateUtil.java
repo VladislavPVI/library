@@ -1,4 +1,5 @@
 package com.haulmont.testtask.utils;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -6,24 +7,20 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil
-{
+public class HibernateUtil {
     private Session currentSession;
     private Transaction currentTransaction;
     private static SessionFactory sessionFactory;
     private static StandardServiceRegistry registry;
 
-    public Session openCurrentSession() {
+    public void openCurrentSession() {
         currentSession = getSessionFactory().openSession();
-        return currentSession;
     }
 
-    public Session openCurrentSessionwithTransaction() {
+    public void openCurrentSessionwithTransaction() {
         currentSession = getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
-        return currentSession;
     }
 
     public void closeCurrentSession() {
@@ -35,8 +32,7 @@ public class HibernateUtil
         currentSession.close();
     }
 
-    public static void shutdown()
-    {
+    public static void shutdown() {
         getSessionFactory().close();
     }
 

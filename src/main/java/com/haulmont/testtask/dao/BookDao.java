@@ -2,6 +2,7 @@ package com.haulmont.testtask.dao;
 
 import com.haulmont.testtask.domain.Book;
 import com.haulmont.testtask.utils.HibernateUtil;
+
 import java.util.List;
 
 public class BookDao extends HibernateUtil implements Dao<Book, Long> {
@@ -11,7 +12,7 @@ public class BookDao extends HibernateUtil implements Dao<Book, Long> {
 
     @Override
     public Book get(Long id) {
-        return (Book) getCurrentSession().get(Book.class,id);
+        return getCurrentSession().get(Book.class, id);
     }
 
     @SuppressWarnings("unchecked")

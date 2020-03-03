@@ -2,13 +2,14 @@ package com.haulmont.testtask.dao;
 
 import com.haulmont.testtask.domain.Author;
 import com.haulmont.testtask.utils.HibernateUtil;
+
 import java.util.List;
 
-public class AuthorDao extends HibernateUtil implements Dao<Author,Long> {
+public class AuthorDao extends HibernateUtil implements Dao<Author, Long> {
 
     @Override
     public Author get(Long id) {
-        return (Author) getCurrentSession().get(Author.class,id);
+        return getCurrentSession().get(Author.class, id);
     }
 
     @SuppressWarnings("unchecked")

@@ -1,30 +1,20 @@
 package com.haulmont.testtask;
 
-import com.haulmont.testtask.domain.Author;
 import com.haulmont.testtask.domain.Book;
-import com.haulmont.testtask.domain.Genre;
-import com.haulmont.testtask.domain.Publisher;
-import com.haulmont.testtask.service.AuthorService;
 import com.haulmont.testtask.service.BookService;
-import com.haulmont.testtask.service.GenreService;
-import com.haulmont.testtask.utils.HibernateUtil;
 import com.vaadin.annotations.Theme;
 import com.vaadin.data.HasValue;
 import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import javax.swing.text.MaskFormatter;
 
 @Theme(ValoTheme.THEME_NAME)
 public class MainUI extends UI {
 
     private VerticalLayout root;
     private TextField textField = new TextField();
-    private BookService bookService = new BookService();
+    private BookService bookService = BookService.getInstance();
     private Grid<Book> grid = new Grid<>(Book.class);
     private TextField textField1 = new TextField();
 
@@ -114,7 +104,7 @@ public class MainUI extends UI {
         form.setWidth("80%");
 
         grid.setItems(bookService.getAll());
-        grid.setColumnOrder("id","title","author","genre","city","year");
+        grid.setColumnOrder("id", "title", "author", "genre", "city", "year");
         grid.removeColumn("id");
         grid.setSizeFull();
         form.addComponent(grid);
@@ -130,7 +120,7 @@ public class MainUI extends UI {
         textField1.addValueChangeListener(this::onAuthorFilterTextChange);
 
         Button add = new Button("Add");
-        form.addComponentsAndExpand(textField,textField1);
+        form.addComponentsAndExpand(textField, textField1);
         form.addComponent(add);
 
         root.addComponent(form);
@@ -151,6 +141,7 @@ public class MainUI extends UI {
         setContent(root);
 
     }
+
     private void onNameFilterTextChange(HasValue.ValueChangeEvent<String> event) {
         ListDataProvider<Book> dataProvider = (ListDataProvider<Book>) grid.getDataProvider();
         dataProvider.setFilter(Book::getTitle, s -> caseInsensitiveContains(s, event.getValue()));

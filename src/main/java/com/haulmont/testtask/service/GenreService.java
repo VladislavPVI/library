@@ -6,10 +6,18 @@ import com.haulmont.testtask.domain.Genre;
 
 import java.util.List;
 
-public class GenreService implements Dao<Genre,Long> {
+public class GenreService implements Dao<Genre, Long> {
     private static GenreDao genreDao;
+    private static GenreService instance;
 
-    public GenreService() {
+    public static synchronized GenreService getInstance() {
+        if (instance == null) {
+            instance = new GenreService();
+        }
+        return instance;
+    }
+
+    private GenreService() {
         genreDao = new GenreDao();
     }
 

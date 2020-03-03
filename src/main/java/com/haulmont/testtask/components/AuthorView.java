@@ -15,9 +15,9 @@ import com.vaadin.ui.themes.ValoTheme;
 @Theme(ValoTheme.THEME_NAME)
 public class AuthorView extends Composite implements View {
 
-    private AuthorEditor sub;
+
     private VerticalLayout root;
-    private AuthorService authorService = new AuthorService();
+    private AuthorService authorService = AuthorService.getInstance();
     private Grid<Author> grid = new Grid<>();
     private final Button addNewButton = new Button("New author", VaadinIcons.PLUS);
 
@@ -25,15 +25,16 @@ public class AuthorView extends Composite implements View {
         setupLayout();
         addHeader();
         addTable();
-                    }
+    }
+
     private void addHeader() {
         Label header = new Label("Authors");
         header.addStyleName(ValoTheme.LABEL_H2);
         addNewButton.addClickListener(e -> {
-                    sub = new AuthorEditor();
-                    sub.addCloseListener(closeEvent -> grid.setItems(authorService.getAll()));
+            AuthorEditor sub = new AuthorEditor();
+            sub.addCloseListener(closeEvent -> grid.setItems(authorService.getAll()));
 
-                });
+        });
         root.addComponent(header);
         root.addComponent(addNewButton);
 
@@ -43,7 +44,7 @@ public class AuthorView extends Composite implements View {
         root = new VerticalLayout();
         root.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-     setCompositionRoot(root);
+        setCompositionRoot(root);
     }
 
 
@@ -80,7 +81,7 @@ public class AuthorView extends Composite implements View {
     }
 
     private void clickChange(ClickableRenderer.RendererClickEvent clickEvent) {
-        sub = new AuthorEditor((Author) clickEvent.getItem());
+        AuthorEditor sub = new AuthorEditor((Author) clickEvent.getItem());
         sub.addCloseListener(closeEvent -> grid.setItems(authorService.getAll()));
     }
 }

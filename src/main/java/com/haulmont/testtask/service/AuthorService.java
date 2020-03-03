@@ -7,8 +7,16 @@ import java.util.List;
 
 public class AuthorService {
     private static AuthorDao authorDao;
+    private static AuthorService instance;
 
-    public AuthorService() {
+    public static synchronized AuthorService getInstance() {
+        if (instance == null) {
+            instance = new AuthorService();
+        }
+        return instance;
+    }
+
+    private AuthorService() {
         authorDao = new AuthorDao();
     }
 

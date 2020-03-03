@@ -1,15 +1,22 @@
 package com.haulmont.testtask.service;
 
 import com.haulmont.testtask.dao.BookDao;
-import com.haulmont.testtask.dao.Dao;
 import com.haulmont.testtask.domain.Book;
 
 import java.util.List;
 
 public class BookService {
     private static BookDao bookDao;
+    private static BookService instance;
 
-    public BookService() {
+    public static synchronized BookService getInstance() {
+        if (instance == null) {
+            instance = new BookService();
+        }
+        return instance;
+    }
+
+    private BookService() {
         bookDao = new BookDao();
     }
 
