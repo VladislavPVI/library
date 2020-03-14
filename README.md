@@ -1,4 +1,4 @@
-Test Task
+Library (test Vaadin)
 =========
 
 Prerequisites
